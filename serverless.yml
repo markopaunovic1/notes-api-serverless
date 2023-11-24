@@ -1,0 +1,68 @@
+service: notes-api-serverless
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  profile: MarkoRole
+  region: eu-north-1
+  iam:
+    role: arn:aws:iam::228421314153:role/events-practice
+
+plugins:
+  - serverless-webpack
+
+package: 
+  individually: true
+
+functions:
+  getNotes:
+    handler: functions/getNotes/index.handler
+    events:
+      - httpApi:
+          path: '/notes'
+          method: GET
+  postNotes:
+    handler: functions/postNotes/index.handler
+    events:
+      - httpApi:
+          path: '/notes'
+          method: POST
+  putNotes:
+    handler: functions/putNotes/index.handler
+    events:
+      - httpApi:
+          path: '/notes'
+          method: PUT
+  deleteNotes:
+    handler: functions/deleteNotes/index.handler
+    events:
+      - httpApi:
+          path: '/notes'
+          method: DELETE
+  userSignup:
+    handler: functions/userSignup/index.handler
+    events:
+      - httpApi:
+          path: '/user/signup'
+          method: POST
+  userLogin:
+    handler: functions/userLogin/index.handler
+    events:
+      - httpApi:
+          path: '/user/login'
+          method: POST
+
+resources:
+  Resources:
+    teamDb:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: 'notes-db'
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
