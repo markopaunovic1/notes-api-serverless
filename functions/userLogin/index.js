@@ -1,49 +1,52 @@
 const { nanoid } = require("nanoid");
 const { sendResponse } = require("../../responses");
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const AWS = require('aws-sdk');
 const db = new AWS.DynamoDB.DocumentClient();
 
-async function createAccount(username, hashedPassword, userId, firstname, lastname) {
+
+async function getUser(username) {
 
     try {
-        await db.put({
+        const user = await db.get({
             TableName: 'notes-accounts',
-            Item: {
-                username: username,
-                password: hashedPassword,
-                firstname: firstname,
-                lastname: lastname,
-                userId: userId
+            Key: {
+                username: username
             }
         }).promise();
 
-        return {success: true, userId: userId};
+        if (user?.Item) {
+            return user.Item;
+        } else {
+            return false;
+        }
     } catch (error) {
         console.log(error);
-        return {success: false, message: 'Could not create account'}
+        return false;
     }
 }
 
-async function signUp(username, password, firstname, lastname) {
 
-    // check if username already exists
-    // id username exists -> return { success: false, message: "username already exists"}
+async function login(username, password) {
+    const user = await getUser(username);
+    if (!user) return {success: false, message: 'Incorrect username or password'};
+    
+    const correctPassword = await bcrypt.compare(password, user.password)
+    if (!correctPassword) return {success: false, message: 'Incorrect username or password'};
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const userId = nanoid();
-    const result = await createAccount(username, hashedPassword, userId, firstname, lastname);
+    const token = jwt.sign({ id: user.userId, username: user.username}, "aabbcc", {expiresIn: 3600});
 
-    return result;
+    return {success: true, token: token}
+
 }
 
 exports.handler = async (event) => {
-    const { username, password, firstname, lastname } = JSON.parse(event.body);
+    const { username, password } = JSON.parse(event.body);
 
-    // signUp
-    const result = await signUp(username, password, firstname, lastname)
+    const result = await login(username,password);
 
-    if (result.success) {
+    if(result.success) {
         return sendResponse(200, result);
     } else {
         return sendResponse(400, result);
