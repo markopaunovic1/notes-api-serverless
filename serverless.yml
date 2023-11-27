@@ -29,7 +29,7 @@ functions:
           path: '/notes'
           method: POST
   putNotes:
-    handler: functions/putNotes/index.handler
+    handler: functions/changeNotes/index.handler
     events:
       - httpApi:
           path: '/notes'
@@ -44,18 +44,18 @@ functions:
     handler: functions/userSignup/index.handler
     events:
       - httpApi:
-          path: '/user/signup'
+          path: '/auth/signup'
           method: POST
   userLogin:
     handler: functions/userLogin/index.handler
     events:
       - httpApi:
-          path: '/user/login'
+          path: '/auth/login'
           method: POST
 
 resources:
   Resources:
-    teamDb:
+    notesDb:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: 'notes-db'
@@ -64,5 +64,17 @@ resources:
             AttributeType: S
         KeySchema:
           - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    usersDb:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: 'notes-accounts'
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: username
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
