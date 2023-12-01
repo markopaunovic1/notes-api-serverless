@@ -1,0 +1,288 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2023-12-01T15:58:49.609Z",
+    "__export_source": "insomnia.desktop.app:v2023.5.8",
+    "resources": [
+        {
+            "_id": "req_c84d2e0468a9465e9b966352a44a265e",
+            "parentId": "fld_c83772659b5944709c64e8d878c7f14c",
+            "modified": 1701446034236,
+            "created": 1701103921873,
+            "url": "https://yq9j7w2993.execute-api.eu-north-1.amazonaws.com/auth/login",
+            "name": "Login",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"username\": \"\",\n\t\"password\": \"\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/2023.5.8"
+                }
+            ],
+            "authentication": {
+                "type": "bearer"
+            },
+            "metaSortKey": -1701103948069,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_c83772659b5944709c64e8d878c7f14c",
+            "parentId": "wrk_114961b5bf5e4114be5961b1995ed66d",
+            "modified": 1700820215760,
+            "created": 1700820215760,
+            "name": "notes-api",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1700820215760,
+            "_type": "request_group"
+        },
+        {
+            "_id": "wrk_114961b5bf5e4114be5961b1995ed66d",
+            "parentId": null,
+            "modified": 1698091373863,
+            "created": 1698091373863,
+            "name": "New Document",
+            "description": "",
+            "scope": "design",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_4b99e8e36b6d466d849b389056dadddc",
+            "parentId": "fld_c83772659b5944709c64e8d878c7f14c",
+            "modified": 1701446041350,
+            "created": 1701103899046,
+            "url": "https://yq9j7w2993.execute-api.eu-north-1.amazonaws.com/auth/signup",
+            "name": "SignUp",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"username\": \"\",\n\t\"password\": \"\",\n\t\"firstname\": \"\",\n\t\"lastname\": \"\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/2023.5.8"
+                }
+            ],
+            "authentication": {
+                "type": "bearer"
+            },
+            "metaSortKey": -1701103947969,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_0020d9223fc9417f8675c38c9b526285",
+            "parentId": "fld_c83772659b5944709c64e8d878c7f14c",
+            "modified": 1701446023225,
+            "created": 1701099166712,
+            "url": "https://yq9j7w2993.execute-api.eu-north-1.amazonaws.com/notes",
+            "name": "GET/ Notes",
+            "description": "",
+            "method": "GET",
+            "body": {
+                "mimeType": "application/json",
+                "text": ""
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/2023.5.8"
+                }
+            ],
+            "authentication": {
+                "type": "bearer",
+                "token": ""
+            },
+            "metaSortKey": -1701103947919,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_bc0179ee7d5d4432ba6d003f92f01902",
+            "parentId": "fld_c83772659b5944709c64e8d878c7f14c",
+            "modified": 1701446053085,
+            "created": 1701103582584,
+            "url": "https://yq9j7w2993.execute-api.eu-north-1.amazonaws.com/notes",
+            "name": "POST/ Notes",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"id\": \"\",\n\t\"title\": \"\",\n\t\"text\": \"\" ,\n\t\"createdAt\": \"\",\n\t\"modifiedAt\": \"\",\n\t\"username\": \"\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/2023.5.8"
+                }
+            ],
+            "authentication": {
+                "type": "bearer",
+                "token": ""
+            },
+            "metaSortKey": -1701103947894,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_286d811d8e8b48de8cdd020f8115dec7",
+            "parentId": "fld_c83772659b5944709c64e8d878c7f14c",
+            "modified": 1701446019288,
+            "created": 1701103610508,
+            "url": "https://yq9j7w2993.execute-api.eu-north-1.amazonaws.com/notes",
+            "name": "PUT/ (Change) Notes",
+            "description": "",
+            "method": "PUT",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"id\": \"\",\n\t\"title\": \"\",\n\t\"text\": \"\",\n\t\"modifiedAt\":\"\",\n\t\"username\": \"\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/2023.5.8"
+                }
+            ],
+            "authentication": {
+                "type": "bearer",
+                "token": ""
+            },
+            "metaSortKey": -1701103947769,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_dc0517e9b8c44b8bb185f0efd1cb4df1",
+            "parentId": "fld_c83772659b5944709c64e8d878c7f14c",
+            "modified": 1701446012475,
+            "created": 1701103620127,
+            "url": "https://yq9j7w2993.execute-api.eu-north-1.amazonaws.com/notes",
+            "name": "DELETE/ Notes",
+            "description": "",
+            "method": "DELETE",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"id\": \"\",\n\t\"username\": \"\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/2023.5.8"
+                }
+            ],
+            "authentication": {
+                "type": "bearer",
+                "token": ""
+            },
+            "metaSortKey": -1701103947669,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "env_c12ba77979a6107c4f41dc4ef52d984258952e31",
+            "parentId": "wrk_114961b5bf5e4114be5961b1995ed66d",
+            "modified": 1698091373868,
+            "created": 1698091373868,
+            "name": "Base Environment",
+            "data": {},
+            "dataPropertyOrder": null,
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1698091373868,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_c12ba77979a6107c4f41dc4ef52d984258952e31",
+            "parentId": "wrk_114961b5bf5e4114be5961b1995ed66d",
+            "modified": 1698091373869,
+            "created": 1698091373869,
+            "name": "Default Jar",
+            "cookies": [],
+            "_type": "cookie_jar"
+        },
+        {
+            "_id": "spc_c899310657a54db59cec6003167577ca",
+            "parentId": "wrk_114961b5bf5e4114be5961b1995ed66d",
+            "modified": 1701253547530,
+            "created": 1698091373866,
+            "fileName": "New Document",
+            "contents": "",
+            "contentType": "yaml",
+            "_type": "api_spec"
+        }
+    ]
+}
