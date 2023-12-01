@@ -15,11 +15,6 @@ const deleteNotes = async (event, context) => {
       // Input from Insomnia
       const note = JSON.parse(event.body);
       const { id, username } = note;
-
-      // Checks if the current user has authorization to delete users note
-      if (currentUser !== username) {
-        return sendResponse(403, {success: false, message: "No access to delete this item."})
-      } 
   
       const getItemParams = {
         TableName: 'notes-db',
@@ -35,6 +30,11 @@ const deleteNotes = async (event, context) => {
       if (!itemToDelete) {
         return sendResponse(404, { message: 'Note ID not found, please try again.' });
       }
+
+      // Checks if the current user has authorization to delete users note
+      if (currentUser !== username || itemToDelete.username !== username) {
+        return sendResponse(403, {success: false, message: "No access to delete this item."})
+      } 
   
       const deleteItemParams = {
         TableName: 'notes-db',

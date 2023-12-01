@@ -25,7 +25,7 @@ const getNotes = async (event, context) => {
     // Filters through the table and looking for the username
     const userNotes = scannedTable.Items.filter(note => note.username === currentUser)
 
-    // Getting only the users notes
+    // Getting only the users notes - just paste the Token in the Bearer and press SEND in Insomnia
     if (userNotes.length > 0) {
       return sendResponse(200, {body: userNotes})
     } else {

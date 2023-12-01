@@ -7,12 +7,25 @@ const { validateToken } = require('../middleware/auth');
 const postNotes = async (event, context) => {
     const note = JSON.parse(event.body);
 
-    // creates a ID as a timestamp and a date when note was created
+    // creates a ID as a timestamp and a formattedDate when note was created
     const timeStamp = new Date().getTime();
-    const createdNote = new Date().toDateString();
+
+    function formatDate(date) {
+        const options = {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+        };    
+        return new Date(date).toLocaleDateString('en-en', options);
+      }
+      const formattedDate = formatDate(new Date());
 
     note.id = `${timeStamp}`;
-    note.createdAt = `${createdNote}`;
+    note.createdAt = `${formattedDate}`;
     note.username = event.username;
 
     if (note.title.length > 50) {
