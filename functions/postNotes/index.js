@@ -37,12 +37,11 @@ const postNotes = async (event, context) => {
     }
     
     try {
-
         if (event?.error && event?.error === '401') {
             return sendResponse(401, {success: false, message: 'Invalid token'});
         }
         
-        // Posting a new note in the table
+        // User posts new item in table
         await db.put({
             TableName: 'notes-db',
             Item: note

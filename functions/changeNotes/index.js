@@ -19,7 +19,6 @@ const changeNotes = async (event, context) => {
           minute: 'numeric',
           second: 'numeric',
         };
-        
         return new Date(date).toLocaleDateString('en-en', options);
       }
       

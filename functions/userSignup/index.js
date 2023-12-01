@@ -27,9 +27,6 @@ async function createAccount(username, hashedPassword, userId, firstname, lastna
 
 async function signUp(username, password, firstname, lastname) {
 
-    // check if username already exists
-    // id username exists -> return { success: false, message: "username already exists"}
-
     const hashedPassword = await bcrypt.hash(password, 10);
     const userId = nanoid();
     const result = await createAccount(username, hashedPassword, userId, firstname, lastname);

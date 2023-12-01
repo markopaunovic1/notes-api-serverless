@@ -1,10 +1,8 @@
-const { nanoid } = require("nanoid");
 const { sendResponse } = require("../../responses");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const AWS = require('aws-sdk');
 const db = new AWS.DynamoDB.DocumentClient();
-
 
 async function getUser(username) {
 
@@ -27,7 +25,6 @@ async function getUser(username) {
     }
 }
 
-
 async function login(username, password) {
     const user = await getUser(username);
     if (!user) return {success: false, message: 'Incorrect username or password'};
@@ -38,7 +35,6 @@ async function login(username, password) {
     const token = jwt.sign({ id: user.userId, username: user.username}, "aabbcc", {expiresIn: 3600});
 
     return {success: true, token: token}
-
 }
 
 exports.handler = async (event) => {
